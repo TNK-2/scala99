@@ -1,5 +1,7 @@
 package list
 
+import java.util.NoSuchElementException
+
 object ListOperationSample {
 
   /**
@@ -30,5 +32,61 @@ object ListOperationSample {
     case h :: _ :: Nil => h
     case _ :: tail => findLastButOneRecursive(tail)
     case _ => throw new NoSuchElementException
+  }
+
+  /**
+   * P03
+   */
+  def findNth[A](n: Int, list: List[A]): A =
+    if (n >= 0) list(n)
+    else throw new NoSuchElementException
+
+  /**
+   * P03
+   */
+  def findNthRecursive[A](n: Int, list: List[A]): A =
+    (n, list) match {
+      case (0, h :: _) => h
+      case (n, _ :: tail) => findNthRecursive(n -1, tail)
+      case (_, Nil) => throw new NoSuchElementException
+    }
+
+  /**
+   * P04
+   */
+  def length[A](list: List[A]): Int = list.length
+
+  /**
+   * P04
+   */
+  def lengthRecursive[A](list: List[A]): Int = list match {
+    case Nil => 0
+    case _ :: tail => 1 + lengthRecursive(tail)
+  }
+
+  /**
+   * P05
+   */
+  def reverse[A](list: List[A]): List[A] = list.reverse
+
+  /**
+   * P05
+   */
+  def reverseRecursive[A](list: List[A]): List[A] = list match {
+    case Nil => Nil
+    case h :: tail => reverseRecursive(tail) ::: List(h)
+  }
+
+  /**
+   * P06
+   */
+  def isPalindrome[A](list: List[A]): Boolean = list.reverse == list
+
+  /**
+   * P07
+   */
+  def flatten(list: List[Any]): List[Any] = list flatMap {
+    case ms: List[_] => flatten(ms)
+    case e => List(e)
   }
 }
