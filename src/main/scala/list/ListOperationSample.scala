@@ -1,5 +1,7 @@
 package list
 
+import list.ListOperationSample.compress
+
 import java.util.NoSuchElementException
 
 object ListOperationSample {
@@ -89,4 +91,41 @@ object ListOperationSample {
     case ms: List[_] => flatten(ms)
     case e => List(e)
   }
+
+  /**
+   * P08
+   */
+  def compress[A](list: List[A]) = list.distinct
+
+  /**
+   * P08
+   */
+  def compressRecursive[A](list: List[A]): List[A] = list match {
+    case Nil => Nil
+    case h :: tail => h :: compressRecursive(tail.dropWhile(_ == h))
+  }
+
+  /**
+   * P09
+   */
+  def pack[A](list: List[A]): List[List[A]] = {
+    if(list.isEmpty) List(List())
+    else {
+      val (packed, next) = list.span { _ == list.head }
+      if (next == Nil) List(packed)
+      else packed :: pack(next)
+    }
+  }
+
+  /**
+   * p10
+   */
+  def encode[A](list: List[A]): List[(Int, A)] =
+    pack(list).map { e => (e.length, e.head) }
+
+  /**
+   * P11
+   */
+  def encodeModified[A](list: List[A]): List[Either[A, (Int, A)]] =
+    encode(list).map { t => if(t._1 == 1) Left(t._2) else Right(t) }
 }
