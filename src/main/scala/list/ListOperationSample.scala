@@ -128,4 +128,22 @@ object ListOperationSample {
    */
   def encodeModified[A](list: List[A]): List[Either[A, (Int, A)]] =
     encode(list).map { t => if(t._1 == 1) Left(t._2) else Right(t) }
+
+  /**
+   * P12
+   */
+  def decode[A](list: List[(Int, A)]): List[A] = list.flatMap { e =>
+    List.fill(e._1)(e._2)
+  }
+
+  /**
+   * P14
+   */
+  def duplicate[A](list: List[A]): List[A] = list.flatMap { e => List(e, e) }
+
+  /**
+   * P15
+   */
+  def duplicate[A](n: Int, list: List[A]): List[A] =
+    list.flatMap { e => List.fill(n)(e) }
 }

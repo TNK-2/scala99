@@ -68,5 +68,17 @@ object Main {
     val modifyEncoded = ListOperationSample
       .encodeModified(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
     println("P11 :: the modifyEncoded is : " + modifyEncoded)
+
+    val decoded = ListOperationSample
+      .decode(List((4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e')))
+    println("P12 :: the decoded is : " + decoded)
+
+    val duplicated = ListOperationSample
+      .duplicate(List('a', 'b', 'c', 'c', 'd'))
+    println("P14 :: the duplicated is : " + duplicated)
+
+    val duplicated2 = ListOperationSample
+      .duplicate(3, List('a', 'b', 'c', 'c', 'd'))
+    println("P15 :: the duplicated is : " + duplicated2)
   }
 }
