@@ -146,4 +146,34 @@ object ListOperationSample {
    */
   def duplicate[A](n: Int, list: List[A]): List[A] =
     list.flatMap { e => List.fill(n)(e) }
+
+  /**
+   * P16
+   */
+  def dropRecursive[A](n: Int, list: List[A]): List[A] = {
+    def dropR(c: Int, curList: List[A], result: List[A]): List[A] = (c, curList) match {
+      case (_, Nil) => result.reverse
+      case (1, _ :: tail) => dropR(n, tail, result)
+      case (_, h :: tail) => dropR(c-1, tail, h :: result)
+    }
+    dropR(n, list, Nil)
+  }
+
+  /**
+   * P17
+   */
+  def split[A](n: Int, list: List[A]): (List[A], List[A]) = list.splitAt(n)
+
+  /**
+   * P17
+   */
+  def splitRecursive[A](n: Int, list: List[A]): (List[A], List[A]) = (n, list) match {
+    case (_, Nil) => (Nil, Nil)
+    case (0, list) => (Nil, list)
+    case (_, h :: tail) => {
+      val (pre, post) = splitRecursive(n-1, tail)
+      (h :: pre, post)
+    }
+  }
+
 }

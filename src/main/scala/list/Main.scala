@@ -80,5 +80,16 @@ object Main {
     val duplicated2 = ListOperationSample
       .duplicate(3, List('a', 'b', 'c', 'c', 'd'))
     println("P15 :: the duplicated is : " + duplicated2)
+
+    val drop = ListOperationSample
+      .dropRecursive(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    println("P16 :: the drop is : " + drop)
+
+    val split = ListOperationSample
+      .split(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val splitRec = ListOperationSample
+      .splitRecursive(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    println("P17 :: the split is : " + split)
+    println("P17 :: the split is ; " + splitRec)
   }
 }
