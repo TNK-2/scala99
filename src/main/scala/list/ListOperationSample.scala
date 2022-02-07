@@ -176,4 +176,20 @@ object ListOperationSample {
     }
   }
 
+  /**
+   * P18
+   */
+  def slice[A](s: Int, e: Int, list: List[A]) = list.slice(s, e)
+
+  /**
+   * P18
+   */
+  def sliceRecursive[A](s: Int, e: Int, list: List[A]): List[A] =
+    (s, e, list) match {
+      case (_, _, Nil) => Nil
+      case (_, e, _) if e <= 0 => Nil
+      case (s, e, h :: tail) if s <= 0 => h :: sliceRecursive(0, e - 1, tail)
+      case (s, e, _ :: tail) => sliceRecursive(s - 1, e - 1, tail)
+    }
+
 }

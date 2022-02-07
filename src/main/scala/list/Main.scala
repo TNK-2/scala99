@@ -91,5 +91,12 @@ object Main {
       .splitRecursive(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     println("P17 :: the split is : " + split)
     println("P17 :: the split is ; " + splitRec)
+
+    val slice = ListOperationSample
+      .slice(3, 7, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val sliceRec = ListOperationSample
+      .slice(3, 7, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    println("P18 :: the slice is : " + slice)
+    println("P18 :: the sliceRec is ; " + sliceRec)
   }
 }
